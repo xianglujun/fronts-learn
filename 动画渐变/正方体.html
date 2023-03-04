@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        position: relative;
+        /* background-color: gray; */
+        border: 2px solid gray;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg) rotateX(30deg);
+      }
+      .box div {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: -100px;
+        font-size: 50px;
+        text-align: center;
+        color: white;
+        opacity: 0.7;
+      }
+
+      .box div:nth-child(1) {
+        background: greenyellow;
+        transform: translateZ(100px);
+      }
+
+      .box div:nth-child(2) {
+        background: red;
+        transform: translateX(-100px) rotateY(-90deg);
+      }
+
+      .box div:nth-child(3) {
+        background: lightblue;
+        transform: translateY(-100px) rotateX(90deg);
+      }
+
+      .box div:nth-child(4) {
+        background: green;
+        transform: translateY(100px) rotateX(-90deg);
+      }
+
+      .box div:nth-child(5) {
+        background: limegreen;
+        transform: translateX(100px) rotateY(90deg);
+      }
+
+      .box div:nth-child(6) {
+        background: lightpink;
+        transform: translateZ(-100px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+  </body>
+</html>

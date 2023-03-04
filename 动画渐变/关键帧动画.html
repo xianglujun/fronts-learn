@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>关键帧动画</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        animation: demo1 2s linear 1s infinite;
+        animation-fill-mode: forwards;
+        /* 
+            none: 默认值
+            forwards: 保留最后的画面
+            backwards: 保留初始画面
+            */
+      }
+
+      /* 声明动画 */
+      @keyframes demo {
+        from {
+          width: 200px;
+          height: 200px;
+          background: red;
+        }
+
+        to {
+          width: 400px;
+          height: 600px;
+          background: green;
+        }
+      }
+
+      @keyframes demo1 {
+        0% {
+          width: 200px;
+          height: 200px;
+          background: red;
+        }
+
+        50% {
+          width: 500px;
+          height: 700px;
+          background: yellow;
+        }
+
+        75% {
+          width: 400px;
+          height: 600px;
+          background: green;
+        }
+
+        100% {
+          width: 200px;
+          height: 200px;
+          background: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        animation和transition得区别:
+        相同点:
+        都是随着时间改变元素得属性值
+
+        不同点:
+        transition需要出发一个事件才会随事件改变其css属性；而animation在不需要出发任何事件得情况下也可以显式随着时间变化来改变元素得css属性值。
+        从而达到一种动画得效果，css3得animation就需要明确的动画属性值。
+     -->
+
+    <div></div>
+  </body>
+</html>

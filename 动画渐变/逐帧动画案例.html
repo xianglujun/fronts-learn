@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逐帧动画实现</title>
+    <style>
+        div{
+            width: 100px;
+            height: 200px;
+            background-image: url('./img/step.png');
+            background-position: -180px -130px;
+            animation: walk 1s step-end infinite;
+        }
+
+        div:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes walk {
+
+            0% {
+                background-position: -180px -130px;
+            }
+
+            12.5% {
+                background-position: -260px -130px;
+            }
+
+            25% {
+                background-position: -340px -130px;
+            }
+
+            37.5% {
+                background-position: -420px -130px;
+            }
+
+            50% {
+                background-position: -430px -130px;
+            }
+
+            62.5% {
+                background-position: -520px -130px;
+            }
+
+            75% {
+                background-position: -600px -130px;
+            }
+
+            87.5% {
+                background-position: -680px -130px;
+            }
+
+            100% { 
+                background-position: -760px -130px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>
