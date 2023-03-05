@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>回到顶部</title>
+        <style>
+            .header {
+                width: 100%;
+                height: 50px;
+                background-color: lightblue;
+
+                position: fixed;
+                top: -50px;
+
+                text-align: center;
+                line-height: 50px;
+                transition: all 0.5s linear;
+            }
+
+            #goTop {
+                position: fixed;
+                right: 20px;
+                bottom: 20px;
+                height: 50px;
+                width: 50px;
+                font-size: 20px;
+                background-color: black;
+                color: white;
+                display: none;
+                transition: all 0.5s linear;
+                cursor: pointer;
+            }
+
+            #goTop:hover {
+                background-color: red;
+            }
+
+            body {
+                height: 3000px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header" class="header">顶部导航栏</div>
+        <div id="goTop">回到顶部</div>
+
+        <script>
+            var header = document.getElementById("header");
+            var goTop = document.getElementById("goTop");
+
+            window.onscroll = function () {
+                var height =
+                    document.documentElement.scrollTop ||
+                    document.body.scrollTop;
+                if (height > 300) {
+                    header.style.top = "0px";
+                    goTop.style.display = "block";
+                } else {
+                    header.style.top = "-50px";
+                    goTop.style.display = "none";
+                }
+            };
+
+            document.getElementById("goTop").onclick = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>操作元素</title>
+        <style>
+            .box {
+                width: 500px;
+                margin: 0 auto;
+                background-color: yellow;
+            }
+
+            .content {
+                height: 200px;
+                background-color: red;
+            }
+
+            .name {
+                font-size: 23px;
+            }
+
+            .meclass {
+                font-size: 16px;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <div class="box content"></div>
+        <div class="box"></div>
+
+        <div>
+            <button id="gev">获取元素属性值</button>
+            <button id="mev">修改元素类型</button>
+            <button id="meclass">修改元素class</button>
+            <button id="gestyle">获取行内样式</button>
+            <button id="gelink">获取非行内样式</button>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                class="name"
+                style="background-color: lightblue"
+            />
+
+            <script>
+                var gev = document.getElementById("gev");
+                gev.onclick = function () {
+                    var name = document.getElementById("name");
+
+                    var type = name.type;
+                    var nname = name.name;
+                    var id = name.id;
+                    var nclass = name.className;
+
+                    console.log(type, nname, id, nclass);
+                };
+                mev.onclick = function () {
+                    var name = document.getElementById("name");
+                    name.type = "password";
+                };
+
+                meclass.onclick = function () {
+                    var name = document.getElementById("name");
+                    // name.setAttribute("class", "meclass");
+                    name.className = "meclass";
+                };
+
+                gestyle.onclick = function () {
+                    var name = document.getElementById("name");
+                    var bgc = name.style.backgroundColor;
+                    console.log(bgc);
+                    name.setAttribute("value", bgc);
+                    name.style.backgroundColor = "#fff";
+                };
+                gelink.onclick = function () {
+                    var name = document.querySelector("div");
+                    var margin = window.getComputedStyle(name).margin;
+                    var bgc = window.getComputedStyle(name).backgroundColor;
+                    var fontSize = window.getComputedStyle(name).fontSize;
+                    console.log(margin, bgc, fontSize);
+                };
+            </script>
+        </div>
+    </body>
+</html>

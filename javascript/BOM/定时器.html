@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>定时器</title>
+        <script>
+            // 循环执行
+            var timer1 = setInterval(function () {
+                console.log("执行一次");
+            }, 1000);
+
+            // 指定时间后执行一次
+            var timer2 = setTimeout(function () {
+                console.log("只执行一次");
+            }, 1000);
+        </script>
+    </head>
+    <body>
+        <button id="closeTimer">关闭定时器</button>
+        <script>
+            closeTimer.onclick = function () {
+                clearInterval(timer1);
+                clearInterval(timer2);
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>全选功能</title>
+        <style>
+            .box {
+                width: 200px;
+                margin: 0 auto;
+                border: 1px solid blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div>全选: <input type="checkbox" /></div>
+            <hr />
+            <div><input type="checkbox" />选项一</div>
+            <div><input type="checkbox" />选项二</div>
+            <div><input type="checkbox" />选项三</div>
+            <div><input type="checkbox" />选项四</div>
+            <div><input type="checkbox" />选项五</div>
+        </div>
+        <script>
+            var allBox = document.querySelector(".box input");
+            var items = document.querySelectorAll("div:nth-child(n+2) input");
+            console.log(items);
+            allBox.onclick = function () {
+                var checked = allBox.checked;
+                console.log(checked);
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = checked;
+                }
+            };
+
+            // 为items绑定事件
+            items.forEach((item) => {
+                item.onclick = function () {
+                    var checked = this.checked;
+                    var flag = true;
+                    items.forEach((item) => {
+                        if (item.checked === false) {
+                            flag = false;
+                        }
+                    });
+                    allBox.checked = flag;
+                };
+            });
+        </script>
+    </body>
+</html>

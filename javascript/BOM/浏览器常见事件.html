@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            // 资源加载完毕
+            window.onload = function () {
+                console.log("资源加载完毕了<br/>");
+            };
+
+            window.onresize = function () {
+                console.log("窗口大小发生了改变,,");
+            };
+
+            // 滚动条位置发生嘎变
+            window.onscroll = function () {
+                var heigth =
+                    document.documentElement.scrollTop ||
+                    document.body.scrollTop;
+                var widht =
+                    document.documentElement.scrollLeft ||
+                    document.body.scrollLeft;
+                console.log("滚动条位置发生改变:", heigth, widht);
+            };
+        </script>
+        <style>
+            body {
+                width: 2000px;
+                height: 2000px;
+            }
+            .box {
+                overflow: auto;
+                height: 200px;
+                background-color: yellow;
+            }
+
+            .child {
+                height: 400px;
+                background-color: red;
+            }
+            button {
+                position: fixed;
+                right: 50px;
+                bottom: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="child"></div>
+        </div>
+        <button id="goTop">回到顶部</button>
+        <script>
+            // 滚动到指定位置
+            goTop.onclick = function () {
+                // 瞬间定位
+                // window.scroll(0,0)
+                
+                // 平滑得回到顶部
+                window.scroll({
+                    left: 0,
+                    top: 0,
+                    behavior: "smooth",
+                });
+            };
+        </script>
+    </body>
+</html>
