@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>操作元素节点</title>
+    </head>
+    <body>
+        <div id="parent">
+            <p>我是div本身的p标签</p>
+        </div>
+
+        <script>
+            var node = document.createElement("p");
+            node.innerText = "我是自动创建出来的p标签";
+            var parent = document.getElementById("parent");
+            parent.appendChild(node);
+
+            node = document.createElement("span");
+            node.innerText = "我是通过insertBefore方法加入到div的";
+            var iNode = document.getElementsByTagName("p");
+            parent.insertBefore(node, iNode[0]);
+
+            // 删除节点
+            parent.removeChild(iNode[0]);
+            node.remove();
+
+            // 替换节点
+            var childDiv = document.createElement("div");
+            childDiv.innerText = "我通过replaceChild方法替换而来?";
+            parent.replaceChild(childDiv, iNode[0]);
+        </script>
+    </body>
+</html>

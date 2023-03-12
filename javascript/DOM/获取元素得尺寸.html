@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>获取元素尺寸方法</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            div {
+                font-size: 50px;
+                line-height: 50px;
+                width: 100px;
+                height: 100px;
+
+                border: 1px solid black;
+                padding: 5px 0 0 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo">你好呀</div>
+        <script>
+            function getSize(obj) {
+                var size = {
+                    width: 0,
+                    height: 0,
+                    widthWithBorder: 0,
+                    heightWithBorder: 0,
+                };
+                if (!obj) {
+                    return size;
+                }
+                if (obj.offsetHeight && obj.offsetWidth) {
+                    size.widthWithBorder = obj.offsetWidth;
+                    size.heightWithBorder = obj.offsetHeight;
+                }
+                if (obj.clientHeight && obj.clientWidth) {
+                    size.width = obj.clientWidth;
+                    size.height = obj.clientHeight;
+                }
+                return size;
+            }
+            console.log(getSize(demo));
+        </script>
+    </body>
+</html>

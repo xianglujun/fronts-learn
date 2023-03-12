@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>事件信息以及事件源对象</title>
+        <style>
+            div {
+                width: 200px;
+                height: 200px;
+                background-color: black;
+
+                margin: 0 auto;
+                margin-top: 1000px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="event"></div>
+        <input type="text" id="input" />
+        <script>
+            var event = document.getElementById("event");
+            event.onclick = function (e) {
+                console.log(e);
+                // 获取点击位置
+                console.log(e.offsetX, e.offsetY); // 相当于元素定位，只在元素内部定位
+                console.log(e.clientX, e.clientY); // 相当于浏览器窗口定位
+                console.log(e.pageX, e.pageY); // 相当于文档流定位
+            };
+
+            var input = document.getElementById("input");
+            input.onkeyup = function (e) {
+                // console.log(e);
+                console.log(e.key, e.code);
+            };
+
+            event.onkeyup = function (e) {
+                // console.log(e);
+                console.log(e.key, e.code);
+            };
+        </script>
+    </body>
+</html>
