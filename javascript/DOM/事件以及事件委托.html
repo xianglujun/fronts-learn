@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>事件以及事件委托</title>
+        <style>
+            .outer {
+                width: 500px;
+                height: 500px;
+                margin: 0 auto;
+                background-color: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .middle {
+                width: 300px;
+                height: 300px;
+                background-color: yellow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .inner {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+            }
+
+            ul {
+                list-style: none;
+            }
+            ul {
+                width: 400px;
+                height: 500px;
+                background-color: lightblue;
+            }
+
+            ul li {
+                width: 100px;
+                height: 100px;
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="outer">
+            <div class="middle">
+                <div class="inner"></div>
+            </div>
+        </div>
+
+        <ul>
+            事件委托
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <script>
+            var outer = document.querySelector(".outer");
+            var middle = document.querySelector(".middle");
+            var inner = document.querySelector(".inner");
+
+            outer.onclick = function () {
+                console.log("我是outer得点击事件");
+            };
+
+            middle.onclick = function () {
+                console.log("我是middle的点击事件");
+            };
+
+            inner.onclick = function (e) {
+                // 阻止向上冒泡事件
+                e.stopPropagation();
+                console.log("我是inner的点击事件");
+            };
+
+            var ul = document.querySelector("ul");
+            ul.onclick = function (e) {
+                var target = e.target;
+                console.log(e);
+                if (target) {
+                    console.log(target.localName, target.innerText);
+                }
+            };
+        </script>
+    </body>
+</html>

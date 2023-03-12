@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>轮播图案例</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            ol {
+                list-style: none;
+            }
+            .box {
+                width: 100%;
+                height: 400px;
+                position: relative;
+            }
+            .box-img {
+                width: 100%;
+                height: 400px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transition: all 0.5s linear;
+            }
+            .box-img:nth-child(1) {
+                background-color: black;
+            }
+            .box-img:nth-child(2) {
+                background-color: green;
+            }
+            .box-img:nth-child(3) {
+                background-color: yellow;
+            }
+            .box-img:nth-child(4) {
+                background-color: red;
+            }
+            .box-img:nth-child(5) {
+                background-color: blue;
+            }
+
+            .box ol {
+                display: flex;
+                justify-content: space-around;
+                width: 150px;
+                position: absolute;
+                bottom: 20px;
+                left: calc(50% - 75px);
+                border-radius: 50%;
+            }
+            .box ol li {
+                width: 20px;
+                height: 20px;
+                background-color: white;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .box .img-active {
+                opacity: 1;
+            }
+
+            .left {
+                position: absolute;
+                color: black;
+                background-color: lightgray;
+                padding: 5px;
+                top: calc(50% - 5px);
+                left: 10px;
+                cursor: pointer;
+            }
+
+            .right {
+                position: absolute;
+                color: black;
+                background-color: lightgray;
+                padding: 5px;
+                top: calc(50% - 5px);
+                right: 10px;
+                cursor: pointer;
+            }
+
+            .box ol .active {
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="box-img img-active"></div>
+            <div class="box-img"></div>
+            <div class="box-img"></div>
+            <div class="box-img"></div>
+            <div class="box-img"></div>
+            <ol>
+                <li data-index="0" class="active"></li>
+                <li data-index="1"></li>
+                <li data-index="2"></li>
+                <li data-index="3"></li>
+                <li data-index="4"></li>
+            </ol>
+            <div class="left">&lt;</div>
+            <div class="right">></div>
+        </div>
+
+        <script>
+            var index = 0;
+            var imgs = document.querySelectorAll(".box-img");
+            var points = document.querySelectorAll("ol>li");
+            function nextImg(type) {
+                var img = imgs[index];
+                var point = points[index];
+                console.log(img, point);
+                img.className = "box-img";
+                point.className = "";
+
+                if (type === true) {
+                    index++;
+                } else if (type === false) {
+                    index--;
+                } else if (typeof type == "number") {
+                    index = type;
+                }
+
+                if (index < 0) {
+                    index = imgs.length - 1;
+                } else if (index >= imgs.length) {
+                    index = 0;
+                }
+
+                imgs[index].className = "box-img img-active";
+                points[index].className = "active";
+            }
+
+            var ol = document.querySelector("ol");
+            ol.onclick = function (e) {
+                var target = e.target;
+                var localName = target.localName;
+                if (localName == "li") {
+                    var index = target.getAttribute("data-index") - 0;
+                    console.log(typeof index, index);
+                    nextImg(index);
+                }
+            };
+
+            var left = document.querySelector(".left");
+            left.onclick = function () {
+                nextImg(false);
+            };
+
+            var right = document.querySelector(".right");
+            right.onclick = function () {
+                nextImg(true);
+            };
+
+            setInterval(function () {
+                nextImg(true);
+            }, 5000);
+        </script>
+    </body>
+</html>
