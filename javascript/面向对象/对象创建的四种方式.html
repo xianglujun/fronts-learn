@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>对象创建的四种方式</title>
+        <script>
+            // 1. 通过var的方式创建
+            var obj = {
+                name: "Johnny",
+                age: 31,
+                sayHi: function () {
+                    console.log("Hello World");
+                },
+            };
+
+            // 2. 通过内置构造函数创建对象
+            var conObj = new Object();
+            conObj.name = "Johnny";
+            conObj.age = 31;
+            conObj.sayHi = function () {
+                console.log("Hello World");
+            };
+
+            // 3. 工厂函数创建对象
+            function createObject(name, age) {
+                var obj = {};
+                obj.name = "Johnny";
+                obj.age = 31;
+                obj.sayHi = function () {
+                    console.log("Hello World");
+                };
+                return obj;
+            }
+            var obj1 = createObject("Johnny1", 31);
+            var obj2 = createObject("Johnn2", 34);
+            console.log(obj1, obj2);
+
+            // 4. 构造函数, 需要和this关键字连用，不然没有意义
+            function createObj(name, age) {
+                this.name = name;
+                this.age = age;
+                this.sayHi = function () {
+                    console.log("Hello World");
+                };
+            }
+            var obj3 = new createObj("Johnny3", 43);
+            console.log(obj3);
+            console.log(typeof obj3);
+        </script>
+    </head>
+    <body></body>
+</html>

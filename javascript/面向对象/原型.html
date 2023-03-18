@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>原型</title>
+    </head>
+    <body>
+        <script>
+            /* 
+            原型 prototype:
+                + 定义：每一个函数天生带一个属性，叫做prototype, 是一个对象构造函数，也是函数，也会有这个自带空间prototype
+                + 我们可以像prototype中加入内容
+
+            对象:
+                + 定义：每一个对象，在你访问他的成员的时候，如果自己没有这个属性，会自动去所属构造函数的prototype上查找
+            */
+
+            function Person(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            Person.prototype.sayHi = function () {
+                console.log("我是原型链上的方法");
+            };
+
+            Person.prototype.a = 100;
+            Person.prototype.b = 200;
+
+            var p1 = new Person("Johnny", 21);
+            var p2 = new Person("Rose", 43);
+            p1.a = 150;
+
+            console.log(p1, p2);
+            console.log(p1.__proto__ == Person.prototype);
+            console.log(p2.__proto__ == Person.prototype);
+            console.log(p1.a);
+            console.log(p2.a);
+        </script>
+    </body>
+</html>
