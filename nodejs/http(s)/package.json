@@ -1,0 +1,8 @@
+{
+  "name": "http-https",
+  "version": "1.0.0",
+  "description": "http模块的使用",
+  "main": "index.js",
+  "author": "xianglujun",
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "es-module",
+  "version": "1.0.0",
+  "description": "es 模块化写法",
+  "main": "index.js",
+  "type": "module",
+  "author": "xianglujun",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "yarn-learn",
+  "version": "1.0.0",
+  "description": "yarn学习项目",
+  "main": "index.js",
+  "author": "xianglujun",
+  "license": "MIT",
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}
