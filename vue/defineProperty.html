@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.defineProperty</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var obj = {}
+        var ele = document.getElementById("box")
+        // 单个属性监听
+        Object.defineProperty(obj, "myname", {
+            get() {
+                console.log("invoke get")
+            },
+            set(val) {
+                console.log("invoke set", val)
+                ele.innerHTML = val
+            }
+        });
+
+        Object.defineProperties(obj, {
+            age: {
+                get() {
+                    console.log("get age")
+                },
+                set(val) {
+                    console.log("set age,", val)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

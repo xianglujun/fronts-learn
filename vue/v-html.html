@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div v-html="myhtml"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                // 这种html渲染是比较危险的，需要处理xss攻击信息
+                myhtml: '<b>加粗文本信息</b>'
+            }
+        })
+    </script>
+</body>
+
+</html>

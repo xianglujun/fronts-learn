@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist实现</title>
+    <script src="lib/vue2.js"></script>
+    <style>
+        span {
+            cursor: pointer;
+        }
+
+        span:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <input type="text" v-model="task" placeholder="请输入任务">
+            <button @click="addTask()">新增</button>
+        </div>
+        <div>
+            <ul v-show="todolist.length">
+                <li v-for="(item, index) in todolist">
+                    {{item}}
+                    <span @click="delTask(index)" v-show="isShowDel">x</span>
+                </li>
+            </ul>
+            <div v-show="!todolist.length">暂未创建任何任务</div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                todolist: [],
+                task: "",
+                isShowDel: true
+            }, methods: {
+                addTask() {
+                    if (this.task) {
+                        this.todolist.push(this.task)
+                    }
+                },
+                delTask(index) {
+                    this.todolist.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

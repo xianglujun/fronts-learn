@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+    <style>
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+        }
+
+        ul li {
+            flex: 1;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            padding: 5px;
+        }
+
+        ul li:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <ul>
+                <li v-for="(menu, index) in menus" :class="current === index ? 'active':''" @click="handleClick(index)">
+                    {{menu}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                menus: ['首页', '详情', '我的'],
+                current: 0
+            },
+            methods: {
+                handleClick(index) {
+                    this.current = index
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

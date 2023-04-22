@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/vue2.js"></script>
+    <style>
+        .yellow {
+            background-color: yellow;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div :class="changecolor">我包含了北京颜色</div>
+        <div :class="isColor?'yellow':'red'">我包含了北京颜色</div>
+        <div>
+            文本内容: {{myname}} - {{myage}}
+        </div>
+        <button @click="buttonchange()">change</button>
+        <div v-show="isShow">我是动态显示和隐藏(存在于文档流中)</div>
+        <div v-if="isShow">我是动态插入和删除(不在文档流中)</div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                myname: "xianglj",
+                myage: 100,
+                changecolor: 'yellow',
+                isColor: false,
+                isShow: false
+            },
+            methods: {
+                buttonchange() {
+                    if (this.myage > 100) {
+                        this.myage = 18
+                    } else {
+                        this.myage++
+                    }
+                    this.changecolor = 'red'
+                    this.isColor = !this.isColor
+                    this.isShow = !this.isShow
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

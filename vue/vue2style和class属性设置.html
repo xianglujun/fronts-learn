@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2style和class属性设置</title>
+    <script src="lib/vue2.js"></script>
+    <style>
+        .aa {}
+
+        .bb {}
+
+        .cc {}
+
+        .dd {}
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div :class="myclassobj">我是动态控制class-对象</div>
+        <div :class="myclassarr">我是动态控制class-数组</div>
+
+        <div :style="mystyleobj">我是动态控制style-对象</div>
+        <div :style="mystylearr">我是动态控制style-数组</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                myclassobj: {
+                    aa: true,
+                    bb: true,
+                    cc: false
+                },
+                myclassarr: ['aa', "bb"],
+                mystyleobj: {
+                    backgroundColor: "red"
+                },
+                mystylearr: [{
+                    backgroundColor: "yellow"
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>
