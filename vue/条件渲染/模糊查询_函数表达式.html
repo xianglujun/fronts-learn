@@ -16,28 +16,21 @@
             input: 则是咋输入值发生改变的时候就会改变
 
          -->
-        <input type="text" placeholder="请输入查询字符串" v-model="search" @input="handleInput">
+        <input type="text" placeholder="请输入查询字符串" v-model="search">
         <ul>
-            <li v-for="(item,index) in items" :key="index">{{item}}</li>
+            <li v-for="(item,index) in filter()" :key="index">{{item}}</li>
         </ul>
     </div>
     <script>
         new Vue({
             el: "#box",
             data: {
-                sources: ['aaa', 'aaac', 'aaas', 'aaaaae', 'aaasw', 'aaabc'],
                 items: ['aaa', 'aaac', 'aaas', 'aaaaae', 'aaasw', 'aaabc'],
                 search: ''
             },
             methods: {
-                handleInput() {
-                    console.log(this.search)
-                    if (!this.search) {
-                        this.items = this.sources
-                        return
-                    }
-                    var newItems = this.items.filter(item => item.includes(this.search))
-                    this.items = newItems
+                filter() {
+                    return this.items.filter(item => item.includes(this.search))
                 }
             }
         })

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单控件绑定</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <h2>登陆信息</h2>
+            <label for="username">用户名称: </label><input type="text" v-model="login.username" id="username">
+            <p>
+                <input type="checkbox" v-model="login.isRemeber" id="is_remember"><label for="is_remember">记住我?</label>
+            </p>
+            <p>
+                <button @click="handleLogin()">登陆</button>
+            </p>
+            <p>
+                当前登陆人: {{login.username}}
+            </p>
+        </div>
+        <div>
+            <h2>兴趣爱好</h2>
+            <input type="checkbox" v-model="userinfo.likes" value="react" id="react"><label for="react">react</label>
+            <input type="checkbox" v-model="userinfo.likes" value="vue" id="vue"><label for="vue">Vue</label>
+            <input type="checkbox" v-model="userinfo.likes" value="javascript" id="javascript"><label
+                for="javascript">javascript</label>
+            <input type="checkbox" v-model="userinfo.likes" value="css" id="css"><label for="css">css</label>
+            <p>
+                当前选择爱好列表: {{userinfo.likes}}
+            </p>
+        </div>
+        <div>
+            <h2>单选框</h2>
+            <input type="radio" name="sex" id="famale" value="famale" v-model="userinfo.sex"><label
+                for="famale">女</label>
+            <input type="radio" name="sex" id="male" value="male" v-model="userinfo.sex"><label for="male">男</label>
+            <p>
+                当前性别选择: {{userinfo.sex}}
+            </p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                login: {
+                    username: localStorage.getItem("username"),
+                    isRemeber: false
+                },
+                userinfo: {
+                    likes: [],
+                    sex: ''
+                }
+            },
+            methods: {
+                handleLogin() {
+                    if (this.login.isRemeber) {
+                        localStorage.setItem("username", this.login.username)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

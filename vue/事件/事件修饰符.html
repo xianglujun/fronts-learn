@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="../lib/vue2.js"></script>
+    <style>
+        .modal {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background-color: lightgray;
+            opacity: 0.5;
+        }
+
+        .center {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            margin: auto;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="btns">
+            <button @click="isShowModal = true">模态框</button>
+            <button @click.once="count++">once</button>
+        </div>
+        <p>count: {{count}}</p>
+        <div class="modal" v-if="isShowModal" @click.self="isShowModal=false">
+            <div class="center" @click.stop>
+                <p>
+                    <label for="username">用户名:</label><input type="text" placeholder="请输入用户名">
+                </p>
+                <p>
+                    <label for="username">密码:</label><input type="text" placeholder="请输入密码">
+                </p>
+
+
+                <div>
+                    <button>登陆</button>
+                    <a href="https://www.baidu.com" @click.prevent>注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                isShowModal: false,
+                count: 0
+            }
+        })
+    </script>
+</body>
+
+</html>
