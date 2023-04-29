@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染实现</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+
+    <div id="box">
+        <ul>
+            <li v-for="(order,index) in orders" :key="index">
+                {{order.name}} -
+                <span v-if="order.state == 0">未支付</span>
+                <span v-else-if="order.state == 1">支付中</span>
+                <span v-else-if="order.state == 2">支付成功</span>
+                <span v-else-if="order.state == 3">支付失败</span>
+                <span v-else>-</span>
+            </li>
+        </ul>
+        <button @click="changestate()">切换状态</button>
+        <input type="checkbox" :checked="checked">
+        <template v-if="checked">
+            <div>11111111</div>
+            <div>11111111222</div>
+            <div>11111111333</div>
+        </template>
+        <div v-show="checked">
+            我是v-show中的内容
+        </div>
+        <div>我是template后面的内容</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                orders: [{
+                    name: "订单1",
+                    state: 1
+                },
+                {
+                    name: "订单2",
+                    state: 2
+                }, {
+                    name: "订单3",
+                    state: 0
+                }, {
+                    name: "订单4",
+                    state: 3
+                }, {
+                    name: "订单5",
+                    state: 4
+                }],
+                checked: false
+            },
+            methods: {
+                changestate() {
+                    this.checked = !this.checked
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
