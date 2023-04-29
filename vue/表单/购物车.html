@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <script src="../lib/vue2.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .item {
+            height: 150px;
+            display: flex;
+            padding: 5px;
+        }
+
+        .item::after {
+            content: '';
+            display: table;
+            margin-top: 5px;
+        }
+
+        .item img {
+            max-width: 150px;
+            box-sizing: border-box;
+            border: 1px solid gray;
+        }
+
+        .item .desc {
+            flex: 1;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .item .desc .title {
+            font-size: 18px;
+            padding: 10px 0;
+        }
+
+        .item .desc .subTitle {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .item .desc .op button {
+            /* display: inline-block; */
+            width: 20px;
+            height: 20px;
+            /* line-height: 20px; */
+            text-align: center;
+            /* cursor: pointer; */
+        }
+
+        .item .desc .op input {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .item .desc .op span:hover {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <input type="checkbox" id="all" v-model="allChecked" @change="handleAllChecked()">
+        <div v-for="(item,index) in purchases" class="item" :key="item.id">
+            <input type="checkbox" :value="item.id" v-model="selected">
+            <img :src="item.image" :alt="item.name">
+            <div class="desc">
+                <p class="title">{{item.name}}</p>
+                <p class="subTitle">
+                    <span>{{item.desc}}</span>
+                    <span style="color: red;">￥{{item.price}}</span>
+                </p>
+                <p class="op">
+                    <button :disabled="item.account &lt;=1" @click.stop="item.account--">-</button>
+                    <input type="text" :value="item.account">
+                    <button @click.stop="item.account++">+</button>
+                </p>
+                <button @click="deletePurchase(index, item.id)">删除</button>
+            </div>
+        </div>
+        <div>
+            总计: ￥{{sum()}}
+            <p>
+                商品id列表:{{selected}}
+            </p>
+        </div>
+    </div>
+    <script>
+
+        function Purchase(id, price, name, account, image, desc) {
+            this.name = name
+            this.account = account
+            this.image = image
+            this.desc = desc
+            this.id = id;
+            this.price = price
+        }
+
+        let items = []
+        items.push(new Purchase(1, 12.1, '带钻手表一枚', 1, "https://img.zcool.cn/community/01a3ac554552c80000019ae94606ed.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100", '精致带钻手表'))
+        items.push(new Purchase(2, 56.5, '营养早餐牛奶一箱', 1, "https://img.zcool.cn/community/012a5c5c74acf7a801203d226c61d0.jpg@1280w_1l_2o_100sh.jpg", '营养早餐牛奶一箱'))
+        items.push(new Purchase(3, 21.3, '各种水中一斤', 1, "https://img0.baidu.com/it/u=1400052897,351336861&fm=253&fmt=auto&app=138&f=JPEG?w=610&h=500", '各种水中一斤'))
+
+
+        let vm = new Vue({
+            el: "#box",
+            data: {
+                purchases: items,
+                selected: [],
+                allChecked: false
+            },
+            methods: {
+                increaseAccount(index, item, count) {
+                    console.log("点击事件")
+                    let localAccount = item.account
+                    localAccount = localAccount + count;
+                    if (localAccount <= 0) {
+                        localAccount = 1;
+                    }
+                    item.account = localAccount;
+                    // Vue.set(this.items, index, item)
+                },
+                handleAllChecked() {
+                    console.log(this.allChecked)
+                    var allItems = []
+                    if (this.allChecked) {
+                        this.purchases.forEach(element => {
+                            allItems.push(element.id)
+                        });
+                    }
+                    this.selected = allItems
+
+                },
+                sum() {
+                    if (this.selected && this.selected.length == 0) {
+                        return 0
+                    }
+
+                    let total = 0
+                    this.purchases.forEach(item => {
+                        let id = item.id
+                        if (this.selected.includes(id)) {
+                            total = total + item.account * item.price
+                        }
+                    })
+                    return total;
+                },
+                deletePurchase(index, id) {
+                    console.log(index, id)
+                    console.log(this.purchases)
+                    this.purchases.splice(index, 1)
+                    this.selected = this.selected.filter(itemId => itemId !== id)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
