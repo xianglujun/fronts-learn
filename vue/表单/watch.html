@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模糊查询</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 
+            change: 是当值发生改变并且失去焦点的时候，才会触发
+            input: 则是咋输入值发生改变的时候就会改变
+
+         -->
+        <input type="text" placeholder="请输入查询字符串" v-model="search" @input="handleInput">
+        <ul>
+            <li v-for="(item,index) in items" :key="index">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                sources: ['aaa', 'aaac', 'aaas', 'aaaaae', 'aaasw', 'aaabc'],
+                items: ['aaa', 'aaac', 'aaas', 'aaaaae', 'aaasw', 'aaabc'],
+                search: ''
+            },
+            watch: {
+                search(newVal, oldVal) {
+                    console.log("值发生变化:", newVal, oldVal)
+                    setTimeout(() => {
+                        var newItems = this.sources.filter(item => item.includes(this.search))
+                        this.items = newItems
+                    }, 500)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

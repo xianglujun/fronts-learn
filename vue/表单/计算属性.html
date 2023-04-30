@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结算属性</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <h2>实现首字母大写</h2>
+            <div>
+                <label for="txt">请输入字符: </label><input type="text" id="txt" v-model="txt" placeholder="请输入字符">
+            </div>
+            <div>
+                <p>计算属性输出结果: {{firstLetterUpperCaseC}}</p>
+                <p>计算属性输出结果: {{firstLetterUpperCaseC}}</p>
+                <p>计算属性输出结果: {{firstLetterUpperCaseC}}</p>
+                <p>方法输出结果: {{firstLetterUpperCase()}}</p>
+                <p>方法输出结果: {{firstLetterUpperCase()}}</p>
+                <p>方法输出结果: {{firstLetterUpperCase()}}</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                txt: 'xianglj'
+            },
+            computed: {
+                /* 在计算属性被调用时，当对应的值没有发生变化的时候，对应的计算结果会被缓存，因此计算属性只会被调用一次 */
+                firstLetterUpperCaseC() {
+                    console.log("计算属性被调用")
+                    return this.txt.substring(0, 1).toUpperCase() + this.txt.substring(1)
+                }
+            },
+            methods: {
+                /* 而方法则相反，执行多少次则会被调用多少次。 */
+                firstLetterUpperCase() {
+                    console.log("计算方法被调用")
+                    return this.txt.substring(0, 1).toUpperCase() + this.txt.substring(1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

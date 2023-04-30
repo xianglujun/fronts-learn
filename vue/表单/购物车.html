@@ -78,9 +78,9 @@
 
 <body>
     <div id="box">
-        <input type="checkbox" id="all" v-model="allChecked" @change="handleAllChecked()">
+        <input type="checkbox" id="all" v-model="allChecked" @change="handleAllChecked()"><label for="all">全选</label>
         <div v-for="(item,index) in purchases" class="item" :key="item.id">
-            <input type="checkbox" :value="item.id" v-model="selected">
+            <input type="checkbox" :value="item.id" v-model="selected" @change="handleItemChange()">
             <img :src="item.image" :alt="item.name">
             <div class="desc">
                 <p class="title">{{item.name}}</p>
@@ -128,6 +128,9 @@
                 allChecked: false
             },
             methods: {
+                handleItemChange() {
+                    this.allChecked = (this.selected.length != 0 && this.selected.length === this.purchases.length)
+                },
                 increaseAccount(index, item, count) {
                     console.log("点击事件")
                     let localAccount = item.account
@@ -158,10 +161,10 @@
                     this.purchases.forEach(item => {
                         let id = item.id
                         if (this.selected.includes(id)) {
-                            total = total + item.account * item.price
+                            total = total + item.account * (item.price * 100)
                         }
                     })
-                    return total;
+                    return total / 100;
                 },
                 deletePurchase(index, id) {
                     console.log(index, id)

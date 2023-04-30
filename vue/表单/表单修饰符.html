@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单修饰符</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <h2>.lazy修饰符</h2>
+            <h5>.lazy的作用在于将值的变更从input事件变更到change事件，对于input而言就不会看到实时的变化</h5>
+            <p><input type="text" v-model.lazy='inputTxt'></p>
+            <p>输入数据: {{inputTxt}}</p>
+        </div>
+        <div>
+            <h2>.number修饰符</h2>
+            <h5>.number修饰符限定了输入的类型为数字，如果这个值无法被parseFloat()转换为数字，将返回原值</h5>
+            <p><input type="text" v-model.number='inputNum'></p>
+            <p>输入数据: {{inputNum}}</p>
+        </div>
+        <div>
+            <h2>.trim修饰符</h2>
+            <h5>.trim去掉首位的空格信息</h5>
+            <p><input type="text" v-model.number='inputTrim'></p>
+            <p>输入数据: {{inputTrim}}</p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                inputTxt: '',
+                inputNum: 0,
+                inputTrim: ''
+            }
+        })
+    </script>
+</body>
+
+</html>
