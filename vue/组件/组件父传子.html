@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父传子</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <counter :val="2" :increase="true" :decrease="false" :myparent="parent">
+        </counter>
+        <!-- 内部组件无法全局使用，只能在对应的组件内部使用 -->
+        <!-- <counter-child></counter-child> -->
+        <counter :val="5" :increase="false"></counter>
+    </div>
+    <script>
+        /* 
+        1. 一个组件中只能包含一个根节点
+        2. 每个组件中的定义是独立的，不会相互影响
+        3. Vue相当于一个跟组件，父组件不能直接访问子组件中的内容
+        */
+        Vue.component('counter', {
+            // props: ['val', 'increase'],
+            props: {
+                val: Number,
+                increase: Boolean,
+                decrease: {
+                    type: Boolean,
+                    default: true
+                },
+                myparent: {
+                    type: String,
+                    default: ''
+                }
+            },
+            // 只能包含一个根节点
+            template: `
+                <section style='border:2px solid black;padding: 10px'>
+                <button @click='handleDecrease' v-show='decrease'>-</button>
+                <input type='text' v-model='val' />
+                <button @click='handleIncrease' v-show='increase' >+</button>
+                <p>我是父组件中的值: {{myparent}}</p>
+                </section>
+            `,
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                handleIncrease() {
+                    this.count++
+                },
+                handleDecrease() {
+                    this.count--
+                }
+            },
+        })
+        new Vue({
+            el: "#box",
+            data: {
+                parent: "1111111111111111111111111111111111"
+            }
+        })
+    </script>
+</body>
+
+</html>

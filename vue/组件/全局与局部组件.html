@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定义一个组件</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <counter>
+        </counter>
+        <!-- 内部组件无法全局使用，只能在对应的组件内部使用 -->
+        <!-- <counter-child></counter-child> -->
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+        <child></child>
+    </div>
+    <script>
+        /* 
+        1. 一个组件中只能包含一个根节点
+        2. 每个组件中的定义是独立的，不会相互影响
+        3. Vue相当于一个跟组件，父组件不能直接访问子组件中的内容
+        */
+        Vue.component('counter', {
+            // 只能包含一个根节点
+            template: `
+                <section style='border:2px solid black'>
+                <button @click='handleDecrease'>-</button>
+                <input type='text' v-model='count' />
+                <button @click='handleIncrease'>+</button>
+                <child></child>
+                <counter-child></counter-child>
+                </section>
+            `,
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                handleIncrease() {
+                    this.count++
+                },
+                handleDecrease() {
+                    this.count--
+                }
+            },
+            // 局部组件的定义方式
+            components: {
+                'counterChild': {
+                    template: `
+                        <div>我是组件内部中的组件: {{print}}</div>
+                    `,
+                    data: function () {
+                        return {
+                            print: 'Hello, Child Component'
+                        }
+                    }
+                }
+            }
+        })
+        // 定义全局组件
+        Vue.component('child', {
+            template: `<div>Global Child Component</div>`
+        })
+        new Vue({
+            el: "#box"
+        })
+    </script>
+</body>
+
+</html>
