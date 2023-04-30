@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼数据展示-axios</title>
+    <script src="../lib/vue2.js"></script>
+    <script src="../lib/axios.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            display: flex;
+            justify-content: space-around;
+            padding: 5px;
+        }
+
+        ul li img {
+            width: 100px;
+        }
+
+        ul li .desc {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="handleFetchGet()">fetch-get请求</button>
+        <ul>
+            <li v-for="movie in movices" :key="movie.videoId">
+                <img :src="movie.img" :alt="movie.nm">
+                <div class="desc">
+                    <p>{{movie.nm}}</p>
+                    <p>观众评分 <span>{{movie.sc}}</span></p>
+                    <p>{{movie.desc}}</p>
+                    <p>{{movie.pubDesc}} | {{movie.dur}}分钟</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                movices: []
+            },
+            methods: {
+                handleFetchGet() {
+                    axios.get("json/maoyan.json")
+                        .then(res => res.data)
+                        .then(res => {
+                            console.log(res.data.hot)
+                            this.movices = res.data.hot
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
