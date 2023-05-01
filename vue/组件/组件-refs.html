@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件-refs实现组件通信</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <child ref="myname"></child>
+        <button @click="handleClick">通过ref获取子组件数据</button>
+    </div>
+    <script>
+        // 定义一个组件
+        Vue.component('child', {
+            data() {
+                return {
+                    myname: 'johnny'
+                }
+            },
+            template: `
+                <div>{{myname}}</div>
+            `
+        })
+        new Vue({
+            el: "#box",
+            methods: {
+                handleClick() {
+                    console.log(this.$refs.myname.myname)
+                    this.$refs.myname.myname = '我通过父组件改变了子组件的值'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

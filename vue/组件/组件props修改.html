@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件props修改</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="number" v-model="num">
+        <counter :number="num"></counter>
+        <div>
+            <h2>我只会被改变一次, 父组件再次改变，我将不会被更新</h2>
+            <counter :number="num" v-once></counter>
+        </div>
+    </div>
+    <script>
+        Vue.component("counter", {
+            props: {
+                number: {
+                    // type: Number,
+                    default: 0
+                }
+            },
+            data() {
+                return {
+                    count: this.number
+                }
+            },
+            template: `
+            <section>
+                <button @click='handleIncrease(-1)'>-</button>
+                <input type='text' v-model='count' />
+                <button @click='handleIncrease(1)'>+</button>
+                <p>父组件输入: {{number}}</p>
+            </section>
+            `,
+            methods: {
+                handleIncrease(c) {
+                    this.count += c;
+                }
+            },
+        })
+        new Vue({
+            el: "#box",
+            data: {
+                num: 10
+            }
+        })
+    </script>
+</body>
+
+</html>
