@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指令定义</title>
+    <script src="../lib/vue3.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div v-hello="'red'">222222222222222222222222222222</div>
+        <div v-hello="'green'">222222222222222222222222222222</div>
+        <div v-hello="color">222222222222222222222222222222</div>
+    </div>
+    <script>
+
+        var app = Vue.createApp({
+            data() {
+                return {
+                    color: 'blue'
+                }
+            }
+        })
+        // 定义一个指令
+        app.directive('hello', {
+            created(el, binding, vnode, prevVnode) {
+                console.log("created", el, binding.val)
+            },
+            // inserted只在第一次插入到父节点的时候有效果，当绑定属性更新时，该方法不会执行
+            mounted(el, val) {
+                console.log("inserted", el, val)
+                el.style.color = val.value;
+            },
+            updated(el, val) {
+                console.log("update", el, val)
+                el.style.color = val.value
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate....")
+            },
+            beforeUnmount(el, binding, vnode, prevVnode) {
+                console.log("beforeUnmount....")
+            },
+            unmounted() {
+                console.log("unmounted....")
+            },
+        })
+
+        app.mount("#box")
+    </script>
+</body>
+
+</html>
