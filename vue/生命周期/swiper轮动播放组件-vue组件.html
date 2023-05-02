@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swiper轮动组件-vue</title>
+    <script src="../lib/swiper/swiper-bundle.js"></script>
+    <script src="../lib/vue2.js"></script>
+    <link rel="stylesheet" href="../lib/swiper/swiper-bundle.css">
+    <style>
+        .swiper-size {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <!-- <swiper :key="datalist.length"> -->
+        <swiper v-show="datalist.length">
+            <swiper-item v-for="data in datalist" :key="data.id">
+                <img :src="data.image" :alt="data.name">
+            </swiper-item>
+        </swiper>
+    </div>
+
+    <script>
+        Vue.component("swiperItem", {
+            template: `<div class="swiper-slide"><slot></slot></div>`
+        })
+        Vue.component("swiper", {
+            template: `
+            <div class="swiper">
+            <div class="swiper-wrapper">
+                <slot></slot>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+            `
+            , mounted() {
+                let mySwiper = new Swiper('.swiper', {
+                    direction: 'horizontal', // 垂直切换选项
+                    loop: true, // 循环模式选项
+                    // 如果需要分页器
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                    autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false
+                    },
+
+                    // 如果需要前进后退按钮
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+
+                    // 如果需要滚动条
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                })
+            },
+            destroyed() {
+                console.log("destroyed")
+            },
+        })
+
+        function Purchase(id, price, name, account, image, desc) {
+            this.name = name
+            this.account = account
+            this.image = image
+            this.desc = desc
+            this.id = id;
+            this.price = price
+        }
+        let vm = new Vue({
+            el: "#box",
+            data: {
+                datalist: [],
+                count: 0
+            },
+            mounted() {
+                setTimeout(() => {
+                    let items = []
+                    items.push(new Purchase(1, 12.1, '带钻手表一枚', 1, "https://img.zcool.cn/community/01a3ac554552c80000019ae94606ed.jpg?x-oss-process=image/auto-orient,1/resize,m_lfit,w_1280,limit_1/sharpen,100", '精致带钻手表'))
+                    items.push(new Purchase(2, 56.5, '营养早餐牛奶一箱', 1, "https://img.zcool.cn/community/012a5c5c74acf7a801203d226c61d0.jpg@1280w_1l_2o_100sh.jpg", '营养早餐牛奶一箱'))
+                    items.push(new Purchase(3, 21.3, '各种水中一斤', 1, "https://img0.baidu.com/it/u=1400052897,351336861&fm=253&fmt=auto&app=138&f=JPEG?w=610&h=500", '各种水中一斤'))
+                    this.datalist = items;
+                }, 2000)
+            },
+            updated() {
+            },
+        })
+
+    </script>
+</body>
+
+</html>

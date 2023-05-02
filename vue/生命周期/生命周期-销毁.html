@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期创建阶段</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="isShow = !isShow">关闭组件</button>
+        <child count='1000' v-if="isShow"></child>
+    </div>
+    <script>
+        Vue.component('child', {
+            props: ['count'],
+            data() {
+                return {
+                    time: this.count
+                }
+            },
+            mounted() {
+                this.timerId = setInterval(() => {
+                    console.log(" 开始倒计时")
+                    this.time--;
+                }, 1000)
+            },
+            template: `
+                <p>倒计时: {{time}}</p>
+            `,
+            /* 这里需要注意, 如果只是将元素从界面上隐藏掉，并不会触发销毁事件 */
+            beforeDestroy() {
+                console.log("beforeDestroy", '摧毁前调用')
+            },
+            destroyed() {
+                console.log("destroyed", '组件已经被销毁')
+                clearInterval(this.timerId)
+            },
+        })
+        new Vue({
+            el: '#box',
+            data: {
+                isShow: true
+            }
+
+        })
+    </script>
+</body>
+
+</html>

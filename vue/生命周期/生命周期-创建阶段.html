@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期创建阶段</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>访问状态属性: {{myname}}</p>
+        <p>访问非状态属性: {{age}}</p>
+        <button @click="myname='按钮修改绑定属性的值'">change</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                myname: 'Johnny'
+            },
+            beforeCreate() {
+                console.log("beforeCreate", this.myname)
+            },
+            created() {
+                console.log("created", this.myname)
+                this.myname = this.myname + ' is assigned by created method'
+                // 新增加属性，该属性在更新时，不会同步更新界面dom节点，只有data中的会被监听
+                this.age = 23;
+            },
+            beforeMount() {
+                // 这是创建的时候，最后一次机会修改跟节点
+                console.log("beforeMount", this.$el)
+            },
+            mounted() {
+                console.log("mounted", this.$el, document.getElementById('box').innerHTML)
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate", "当绑定数据有更新的时候，会调用该函数, 可以记录更新前的状态", 'myname的值:', this.myname)
+            },
+            updated() {
+                console.log("updated", "绑定数据更新后, dom已被更新，能够获取更新后的dom")
+            },
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态组件</title>
+    <script src="../lib/vue2.js"></script>
+    <style>
+        ul {
+            list-style: none;
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+        }
+
+        ul li {
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+            background-color: gray;
+            padding: 10px;
+        }
+
+        ul li:hover {
+            background-color: aquamarine;
+        }
+    </style>
+    <style>
+        .demo-enter-active {
+            animation: aaa 1s;
+        }
+
+        .demo-leave-active {
+            animation: aaa .5s reverse;
+        }
+
+        @keyframes aaa {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <!-- 保留组件的状态 -->
+        <keep-alive>
+            <transition name="demo" mode="out-in">
+                <component :is="which">
+                </component>
+            </transition>
+
+        </keep-alive>
+
+        <footer>
+            <ul>
+                <li @click="which='home'">home</li>
+                <li @click="which='list'">列表</li>
+                <li @click="which='shopcar'">购物车</li>
+            </ul>
+        </footer>
+    </div>
+    <script>
+        Vue.component('home', {
+            template: `
+            <section>
+                <label>home:</label> <input type='text' /> </section>
+            `
+        })
+        Vue.component('list', {
+            template: `
+            <section>
+                <label>list:</label> <input type='text' /> </section>
+            `
+        })
+        Vue.component('shopcar', {
+            template: `
+            <section>
+                <label>shopcar:</label> <input type='text' /> </section>
+            `
+        })
+        new Vue({
+            el: '#box',
+            data: {
+                which: 'home'
+            }
+        })
+    </script>
+</body>
+
+</html>
