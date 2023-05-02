@@ -24,7 +24,7 @@
                 }
             }
         })
-        // 定义一个指令
+        // 定义一个指令, vue3的指令生命周期有比较大的变化
         app.directive('hello', {
             created(el, binding, vnode, prevVnode) {
                 console.log("created", el, binding.val)
