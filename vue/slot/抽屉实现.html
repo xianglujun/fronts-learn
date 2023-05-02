@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽屉实现</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <navbar>
+            <button @click="isShow = !isShow">展示侧边栏</button>
+        </navbar>
+        <sidecar v-show="isShow"></sidecar>
+    </div>
+    <script>
+
+        Vue.component('navbar', {
+            template: `
+            <div>
+                <slot></slot>
+            </div>`,
+        })
+
+        Vue.component('sidecar', {
+            template: `<div style="background-color: yellow;">
+            <ul>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+                <li>sdfsdfsdfsdfa</li>
+            </ul>
+        </div>`
+        })
+
+        new Vue({
+            el: "#box",
+            data: {
+                isShow: false
+            }
+        })
+    </script>
+</body>
+
+</html>

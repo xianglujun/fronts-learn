@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件插槽</title>
+    <script src="../lib/vue2.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <child title="具名插槽" desc="包含了名字，标签中的内容会根据名称替换">
+            <div slot="header">我是header中的内容</div>
+            <div slot="main">我是main中的内容</div>
+            <div slot="footer">我是footer中的内容</div>
+        </child>
+        <child title="无名插槽" desc="当子元素没有带上插槽标识的时候，则使用默认的插槽展示">
+            <div>我是被放在了无名的插槽位置上</div>
+        </child>
+    </div>
+    <script>
+        /* 插槽分为两类:
+            1. 无名插槽: <slot></slot>
+            2. 具名插槽: <slot name='name'></slot>
+        */
+        Vue.component('child', {
+            props: ['title', 'desc'],
+            data() {
+                return {
+
+                }
+            },
+            template: `
+            <div style='border: 1px solid red; padding: 5px'>
+                <h2>{{title}}</h2>
+                <p v-show='desc'>{{desc}}</p>
+                <header>
+                    <slot name='header'></slot>  
+                </header>  
+
+                <main>
+                    <slot name='main'></slot>  
+                </main>  
+                <footer>
+                    <slot name='footer'></slot>  
+                </footer>  
+                <slot></slot>
+            </div>
+            `
+
+        })
+        new Vue({
+            el: "#box"
+        })
+    </script>
+</body>
+
+</html>
