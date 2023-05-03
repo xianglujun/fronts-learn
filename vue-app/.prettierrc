@@ -1,0 +1,7 @@
+{
+    "semi": false,
+    "singleAttributePerLine": true,
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+}
