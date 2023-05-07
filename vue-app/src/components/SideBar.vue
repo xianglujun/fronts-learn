@@ -16,7 +16,8 @@ export default {
     }
   },
   mounted () {
-    axios.get('/data/maoyan.json')
+    // axios.get('/data/maoyan.json')
+    axios.get('/api/mmdb/movie/v3/list/hot.json?ct=%E6%88%90%E9%83%BD&ci=59&channelId=4') // 代理到猫眼
       .then(res => res.data.data)
       .then(res => {
         this.datalist = res.hot
