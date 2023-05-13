@@ -8,23 +8,23 @@
 </template>
 
 <script>
-export default {
-  name: 'NavBar',
-  props: {
-    myname: {
-      type: String,
-      default: ''
+  export default {
+    name: 'NavBar', 
+    props: {
+      myname: {
+        type: String,
+        default: ''
+      },
+      showRight: {
+        type: Boolean,
+        default: true
+      }
     },
-    showRight: {
-      type: Boolean,
-      default: true
-    }
-  },
-  methods: {
-    handleLeft () {
-      console.log('handleLeft')
-      this.$emit('event')
+    methods: {
+      handleLeft () {
+        console.log('handleLeft')
+        this.$emit('event')
+      }
     }
   }
-}
 </script>

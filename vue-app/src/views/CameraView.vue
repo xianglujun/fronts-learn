@@ -1,5 +1,6 @@
 <template>
-    <div>
-        Camera
-    </div>
+  <div>
+    Camera
+  </div> 
 </template>
+ 

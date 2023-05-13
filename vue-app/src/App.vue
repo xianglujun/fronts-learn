@@ -57,12 +57,21 @@
       <div>放在子元素节点中</div>
     </NavBar>
     <SideBar v-show="isShow"></SideBar> -->
-
-    RouterView:
-    <ul>
-      <li><router-link active-class="router-link-active" to="/films">电影</router-link></li>
+    <ul> 
+      <!-- <li><router-link active-class="router-link-active" to="/films">电影</router-link></li>
       <li><router-link active-class="router-link-active" to="/camera">拍照</router-link></li>
-      <li><router-link active-class="router-link-active" to="/center">我的</router-link></li>
+      <li><router-link active-class="router-link-active" to="/center">我的</router-link></li> -->
+
+      <!-- vue-router(4) 声明式导航 -->
+      <router-link v-slot="{ navigate, isActive }" to="/films" custom>
+        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">电影</li>
+      </router-link>
+      <router-link v-slot="{ navigate, isActive }" to="/camera" custom>
+        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">拍照</li>
+      </router-link>
+      <router-link v-slot="{ navigate, isActive }" to="/center" custom>
+        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">我的</li>
+      </router-link>
     </ul>
     <router-view></router-view>
   </div>
@@ -73,41 +82,63 @@
 // import SideBar from './components/SideBar'
 // import Vue from 'vue'
 // Vue.component('NavBar', NavBar)
-export default {
-  data () {
-    return {
-      myname: '',
-      datalist: [],
-      isShow: true
-    }
-  },
-  methods: {
-    handleAdd () {
-      this.datalist.push({ id: Math.random(), task: this.myname })
-    },
-    handleShow () {
-      this.isShow = !this.isShow
-    }
-  },
-  components: {
+  export default {
+    components: {
     // NavBar,
     // SideBar
+    },
+    data () { 
+      return { 
+        myname: '',
+        datalist: [],
+        isShow: true
+      }
+    },
+    methods: {
+      handleAdd () {
+        this.datalist.push({ id: Math.random(), task: this.myname })
+      },
+      handleShow () {
+        this.isShow = !this.isShow
+      }
+    }
   }
-}
 </script>
 
 <style lang="scss">
 $width: 300px;
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
 ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-bottom: 1px solid gray;
+
   li {
-    background-color: yellow;
     width: $width;
+    flex: 1;
+    border-right: 1px solid gray;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  li:hover {
+    background-color: green;
+    cursor: pointer;
   }
 }
 
 .router-link-active {
-  color: red;
+  color: white;
   font-weight: bold;
+  background-color: gray;
 }
 </style>

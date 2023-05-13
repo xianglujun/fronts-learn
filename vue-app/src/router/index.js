@@ -1,13 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import FilmsView from '@/views/FilmsView'
+import FilmsView from '@/views/films/FilmsView'
 
 Vue.use(VueRouter) // 注册组件
 
 const routes = [{
   path: '/films',
   name: 'films',
-  component: FilmsView
+  component: FilmsView, 
+  children: [{
+    path: '/films/nowplaying',
+    component: () => import('@/views/films/NowPlaying.vue')
+  },
+  {
+    path: '/films',
+    redirect: '/films/nowplaying'
+  }]
+},
+{
+  name: 'filmDetail',
+  path: '/films/detail/:filmId', // 配置动态路由
+  component: () => import('@/views/films/FilmDetail.vue')
 },
 {
   path: '/camera',

@@ -1,5 +1,6 @@
 <template>
-    <div>
-        Center
-    </div>
+  <div>
+    Center
+  </div>
 </template>
+ 
