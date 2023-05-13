@@ -17,5 +17,16 @@ module.exports = defineConfig({
         }
       }
     }
+  },
+  // 设置别名信息
+  configureWebpack: {
+    resolve: {
+      alias: {
+        assets: '@/assets',
+        components: '@/components',
+        router: '@/router',
+        views: '@/views'
+      }
+    }
   }
 })

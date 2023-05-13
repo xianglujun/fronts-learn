@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <!-- <div>
       <label for="in">输入字符</label>
       <input type="text" id="in" placeholder="输入字符" v-model="myname" />
       <button @click="handleAdd">add</button>
@@ -14,13 +14,63 @@
     <NavBar myname="你好" :showRight="false" @event="handleShow">
       <div>放在子元素节点中</div>
     </NavBar>
-    <SideBar v-show="isShow"></SideBar>
+    <SideBar v-show="isShow"></SideBar><div>
+      <label for="in">输入字符</label>
+      <input type="text" id="in" placeholder="输入字符" v-model="myname" />
+      <button @click="handleAdd">add</button>
+    </div>
+    <ul>
+      <li v-for="data in datalist" :key="data.id">
+        {{ data.task }}
+      </li>
+    </ul>
+
+    <NavBar myname="你好" :showRight="false" @event="handleShow">
+      <div>放在子元素节点中</div>
+    </NavBar>
+    <SideBar v-show="isShow"></SideBar><div>
+      <label for="in">输入字符</label>
+      <input type="text" id="in" placeholder="输入字符" v-model="myname" />
+      <button @click="handleAdd">add</button>
+    </div>
+    <ul>
+      <li v-for="data in datalist" :key="data.id">
+        {{ data.task }}
+      </li>
+    </ul>
+
+    <NavBar myname="你好" :showRight="false" @event="handleShow">
+      <div>放在子元素节点中</div>
+    </NavBar>
+    <SideBar v-show="isShow"></SideBar><div>
+      <label for="in">输入字符</label>
+      <input type="text" id="in" placeholder="输入字符" v-model="myname" />
+      <button @click="handleAdd">add</button>
+    </div>
+    <ul>
+      <li v-for="data in datalist" :key="data.id">
+        {{ data.task }}
+      </li>
+    </ul>
+
+    <NavBar myname="你好" :showRight="false" @event="handleShow">
+      <div>放在子元素节点中</div>
+    </NavBar>
+    <SideBar v-show="isShow"></SideBar> -->
+
+    RouterView:
+    <ul>
+      <li><router-link active-class="router-link-active" to="/films">电影</router-link></li>
+      <li><router-link active-class="router-link-active" to="/camera">拍照</router-link></li>
+      <li><router-link active-class="router-link-active" to="/center">我的</router-link></li>
+    </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar'
-import SideBar from './components/SideBar'
+// import NavBar from './components/NavBar'
+// import SideBar from './components/SideBar'
 // import Vue from 'vue'
 // Vue.component('NavBar', NavBar)
 export default {
@@ -40,8 +90,8 @@ export default {
     }
   },
   components: {
-    NavBar,
-    SideBar
+    // NavBar,
+    // SideBar
   }
 }
 </script>
@@ -54,5 +104,10 @@ ul {
     background-color: yellow;
     width: $width;
   }
+}
+
+.router-link-active {
+  color: red;
+  font-weight: bold;
 }
 </style>
