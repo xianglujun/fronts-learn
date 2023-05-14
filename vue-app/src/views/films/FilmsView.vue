@@ -1,47 +1,63 @@
 <template>
   <div>
-    <swiper-view v-show="datalist.length" :key="datalist.length" class="bar">
-      <swiper-item v-for="(data, index) in datalist" :key="index">
+    <swiper-view
+      v-show="datalist.length"
+      :key="datalist.length"
+      class="bar"
+    > 
+      <swiper-item
+        v-for="(data, index) in datalist"
+        :key="index"
+      >
         <span>{{ data }}</span>
       </swiper-item>
     </swiper-view>
     <ul class="tabbar">
-      <router-link v-slot="{ navigate, isActive }" to="/films/nowplaying" class="tabitem">
-        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">正在热映</li>
+      <router-link
+        v-slot="{ navigate, isActive }"
+        to="/films/nowplaying"
+        class="tabitem"
+      >
+        <li
+          :class="isActive ? 'router-link-active' : ''"
+          @click="navigate"
+        >
+          正在热映
+        </li>
       </router-link>
-      <li class="tabitem">菜单2</li> 
+      <li class="tabitem">菜单2</li>
     </ul>
     <router-view></router-view>
-  </div> 
+  </div>
 </template>
 <script>
   import swiperView from '@/components/SwiperView'
-  import swiperItem from '@/components/SwiperItem'
-  export default {
+  import swiperItem from '@/components/SwiperItem' 
+  export default { 
     components: {
-      swiperView,
-      swiperItem
+      swiperView, 
+      swiperItem, 
     },
-    data () {
+    data() {
       return {
-        datalist: []
+        datalist: [],
       }
-    },
-    mounted () {
+    }, 
+    mounted() {
       setTimeout(() => {
         this.datalist = ['222', '3333', '4444', '5555']
       }, 1000)
-    }
+    },
   }
 </script>
 <style lang="scss" scoped>
 .bar {
-    height: 12.5rem;
-    background-color: yellow;
+  height: 12.5rem;
+  background-color: yellow;
 }
 
 .router-link-active {
-    background-color: orange;
+  background-color: orange;
 }
 </style>
 

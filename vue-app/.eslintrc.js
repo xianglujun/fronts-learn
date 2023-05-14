@@ -1,40 +1,58 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
-  extends: ['plugin:vue/essential', '@vue/standard', 'plugin:vue/recommended', 'eslint:recommended'],
+  extends: [
+    'plugin:vue/essential',
+    // 'plugin:vue/standard',
+    'plugin:vue/recommended',
+    'eslint:recommended',
+    // 'plugin:prettier/recommended',
+  ],
   parserOptions: {
-    parser: '@babel/eslint-parser'
+    parser: '@babel/eslint-parser',
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/max-attributes-per-line': [0, {
-      singleline: 10,
-      multiline: {
-        max: 1,
-        allowFirstLine: false
-      }
-    }],
-    'vue/html-self-closing': ['error', {
-      html: {
-        void: 'any',
-        normal: 'any',
-        component: 'any'
+    'vue/max-attributes-per-line': [
+      0,
+      {
+        singleline: 10,
+        multiline: {
+          max: 1,
+          allowFirstLine: false,
+        },
       },
-      svg: 'any',
-      math: 'any'
-    }],
+    ],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'any',
+          normal: 'any',
+          component: 'any',
+        },
+        svg: 'any',
+        math: 'any',
+      },
+    ],
     'vue/singleline-html-element-content-newline': 'off',
-    'vue/no-parsing-error': [2, { 'invalid-first-character-of-tag-name': false }],
+    'vue/no-parsing-error': [
+      2,
+      { 'invalid-first-character-of-tag-name': false },
+    ],
     'vue/no-use-v-if-with-v-for': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/name-property-casing': [0, 'PascalCase'],
-    'vue/html-closing-bracket-newline': [0, {
-      singleline: 'never',
-      multiline: 'always'
-    }],
+    'vue/html-closing-bracket-newline': [
+      0,
+      {
+        singleline: 'never',
+        multiline: 'always',
+      },
+    ],
     'vue/no-side-effects-in-computed-properties': 0,
     'vue/no-unused-components': 0,
     'vue/no-unused-vars': 0,
@@ -43,27 +61,40 @@ module.exports = {
     'vue/no-useless-template-attributes': 'off',
     'vue/component-definition-name-casing': 'off',
     'accessor-pairs': 2, // 在对象中使用getter/setter
-    'arrow-spacing': [2, {
-      before: true,
-      after: true
-    }], //= >的前/后括号
+    'arrow-spacing': [
+      2,
+      {
+        before: true,
+        after: true,
+      },
+    ], //= >的前/后括号
     'block-spacing': [2, 'always'], // 块是否需要空格
     // if while function 后面的{必须与if在同一行，java风格。
-    'brace-style': [2, '1tbs', {
-      allowSingleLine: true
-    }],
+    'brace-style': [
+      2,
+      '1tbs',
+      {
+        allowSingleLine: true,
+      },
+    ],
     // 制驼峰法命名
-    camelcase: [0, {
-      properties: 'always'
-    }],
+    camelcase: [
+      0,
+      {
+        properties: 'always',
+      },
+    ],
     // 数组和对象键值对最后一个逗号， never参数：不能带末尾的逗号, always参数：必须带末尾的逗号，
     // always-multiline：多行模式必须带逗号，单行模式不能带逗号
     // 'comma-dangle': [2, 'never'],
     // 控制逗号前后的空格
-    'comma-spacing': [2, {
-      before: false,
-      after: true
-    }],
+    'comma-spacing': [
+      2,
+      {
+        before: false,
+        after: true,
+      },
+    ],
     'comma-style': [2, 'last'], // 控制逗号在行尾出现还是在行首出现
     // 强制在子类构造函数中用super()调用父类构造函数，TypeScrip的编译器也会提示
     'constructor-super': 2,
@@ -75,27 +106,41 @@ module.exports = {
     eqeqeq: [0, 'allow-null'], // 使用 === 替代 ==
     'generator-star-spacing': 0, // 生成器函数*的前后空格
     'handle-callback-err': 0, // nodejs 处理错误
-    indent: [2, 2, { // 缩进风格
-      SwitchCase: 1
-    }],
+    indent: [
+      2,
+      2,
+      {
+        // 缩进风格
+        SwitchCase: 1,
+      },
+    ],
     'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }],
     // JSX 属性中一致使用双引号或单引号
     'jsx-quotes': [2, 'prefer-single'],
     // 对象字面量中冒号的前后空格
-    'key-spacing': [2, {
-      beforeColon: false,
-      afterColon: true
-    }],
+    'key-spacing': [
+      2,
+      {
+        beforeColon: false,
+        afterColon: true,
+      },
+    ],
     'no-new': 'off',
-    'keyword-spacing': [2, {
-      before: true,
-      after: true
-    }],
+    'keyword-spacing': [
+      2,
+      {
+        before: true,
+        after: true,
+      },
+    ],
     // 函数名首行大写必须使用new方式调用，首行小写必须用不带new方式调用
-    'new-cap': [2, {
-      newIsCap: true,
-      capIsNew: false
-    }],
+    'new-cap': [
+      2,
+      {
+        newIsCap: true,
+        capIsNew: false,
+      },
+    ],
     'new-parens': 2, // new时必须加小括号
     'no-array-constructor': 2, // 禁止使用数组构造器
     'no-caller': 2, // 禁止使用arguments.caller或arguments.callee
@@ -125,17 +170,24 @@ module.exports = {
     'no-irregular-whitespace': 2, // 不能有不规则的空格
     'no-iterator': 2, // 禁止使用__iterator__ 属性
     'no-label-var': 2, // label名不能与var声明的变量名相同
-    'no-labels': [2, { // 禁止标签声明
-      allowLoop: false,
-      allowSwitch: false
-    }],
+    'no-labels': [
+      2,
+      {
+        // 禁止标签声明
+        allowLoop: false,
+        allowSwitch: false,
+      },
+    ],
     'no-lone-blocks': 2, // 禁止不必要的嵌套块
     'no-mixed-spaces-and-tabs': 2, // 禁止混用tab和空格
     'no-multi-spaces': 2, // 不能用多余的空格
     'no-multi-str': 2, // 字符串不能用\换行
-    'no-multiple-empty-lines': [0, {
-      max: 1
-    }], // 空行最多不能超过1行
+    'no-multiple-empty-lines': [
+      0,
+      {
+        max: 1,
+      },
+    ], // 空行最多不能超过1行
     'no-native-reassign': 2, // 不能重写native对象
     'no-negated-in-lhs': 2, // in 操作符的左边不能有!
     'no-new-object': 2, // 禁止使用new Object()
@@ -166,10 +218,13 @@ module.exports = {
     'no-unneeded-ternary': 0, // 禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
     'no-unreachable': 2, // 不能有无法执行的代码
     'no-unsafe-finally': 0,
-    'no-unused-vars': [0, {
-      vars: 'all',
-      args: 'none'
-    }], // 不能有声明后未被使用的变量或参数
+    'no-unused-vars': [
+      0,
+      {
+        vars: 'all',
+        args: 'none',
+      },
+    ], // 不能有声明后未被使用的变量或参数
     'no-useless-call': 2, // 禁止不必要的call和apply
     'no-useless-computed-key': 0, // 没有必要使用带文字的计算属性
     'no-useless-constructor': 2, // 可以在不改变类的工作方式的情况下安全地移除的类构造函数
@@ -177,30 +232,44 @@ module.exports = {
     'no-whitespace-before-property': 0,
     'no-with': 2, // 禁用with
     'one-var': 0, // 连续声明
-    'operator-linebreak': [2, 'after', {
-      overrides: {
-        '?': 'before',
-        ':': 'before'
-      }
-    }], // 换行时运算符在行尾还是行首
+    'operator-linebreak': [
+      2,
+      'after',
+      {
+        overrides: {
+          '?': 'before',
+          ':': 'before',
+        },
+      },
+    ], // 换行时运算符在行尾还是行首
     'padded-blocks': 0, // 块语句内行首行尾是否要空行
-    quotes: [2, 'single', {
-      avoidEscape: true,
-      allowTemplateLiterals: true
-    }], // 引号类型 `` "" ''
+    quotes: [
+      2,
+      'single',
+      {
+        avoidEscape: true,
+        allowTemplateLiterals: true,
+      },
+    ], // 引号类型 `` "" ''
     semi: [0], // 语句强制分号结尾
-    'semi-spacing': [2, {
-      before: false,
-      after: true
-    }], // 分号前后空格
+    'semi-spacing': [
+      2,
+      {
+        before: false,
+        after: true,
+      },
+    ], // 分号前后空格
     'space-before-blocks': [2, 'always'], // 不以新行开始的块{前面要不要有空格
     // 'space-before-function-paren': [2, 'never'], //函数定义时括号前面要不要有空格
     'space-in-parens': [2, 'never'], // 小括号里面要不要有空格
     'space-infix-ops': 2, // 中缀操作符周围要不要有空格
-    'space-unary-ops': [2, {
-      words: true,
-      nonwords: false
-    }], // 一元运算符的前/后要不要加空格
+    'space-unary-ops': [
+      2,
+      {
+        words: true,
+        nonwords: false,
+      },
+    ], // 一元运算符的前/后要不要加空格
     'spaced-comment': 0, // 注释风格不要有空格什么的
     'switch-colon-spacing': 2, // switch语句内的空格
     'template-curly-spacing': [2, 'never'],
@@ -210,17 +279,21 @@ module.exports = {
     'yield-star-spacing': 0,
     yoda: [2, 'never'], // 禁止尤达条件
     'prefer-const': 0, // 首选const
-    'object-curly-spacing': [2, 'always', {
-      objectsInObjects: false
-    }], // 大括号内是否允许不必要的空格
-    'array-bracket-spacing': [2, 'never'] // 是否允许非空数组里面有多余的空格,
+    'object-curly-spacing': [
+      2,
+      'always',
+      {
+        objectsInObjects: false,
+      },
+    ], // 大括号内是否允许不必要的空格
+    'array-bracket-spacing': [2, 'never'], // 是否允许非空数组里面有多余的空格,
   },
   overrides: [
     {
       files: ['*.vue'],
       rules: {
-        indent: 'off'
-      }
-    }
-  ]
+        indent: 'off',
+      },
+    },
+  ],
 }
