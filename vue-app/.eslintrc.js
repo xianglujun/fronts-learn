@@ -86,6 +86,7 @@ module.exports = {
       beforeColon: false,
       afterColon: true
     }],
+    'no-new': 'off',
     'keyword-spacing': [2, {
       before: true,
       after: true

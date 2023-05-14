@@ -78,10 +78,11 @@
 </template>
 
 <script>
-// import NavBar from './components/NavBar'
-// import SideBar from './components/SideBar'
-// import Vue from 'vue'
-// Vue.component('NavBar', NavBar)
+  document.documentElement.style.frontSize = document.documentElement.clientWidth / 750 * 16 + 'px'
+  // import NavBar from './components/NavBar'
+  // import SideBar from './components/SideBar'
+  // import Vue from 'vue'
+  // Vue.component('NavBar', NavBar)
   export default {
     components: {
     // NavBar,
@@ -106,7 +107,7 @@
 </script>
 
 <style lang="scss">
-$width: 300px;
+$width: 18.75rem;
 
 * {
   padding: 0;

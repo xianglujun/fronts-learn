@@ -24,18 +24,18 @@ const routes = [{
 },
 {
   path: '/login',
-  component: () => import('@/views/LoginView.vue'),
+  component: () => import('@/views/LoginView.vue'), // 路由懒加载
   props: route => ({ from: route.query.from })
 },
 {
   path: '/camera',
   name: 'camera',
-  component: () => import('@/views/CameraView.vue')
+  component: () => import('@/views/CameraView.vue')// 路由懒加载
 },
 {
   path: '/center',
   name: 'center',
-  component: () => import('@/views/CenterView.vue'),
+  component: () => import('@/views/CenterView.vue'), // 路由懒加载
   meta: {
     needToken: true
   },

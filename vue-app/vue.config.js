@@ -1,7 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
-  // lintOnSave: true
+  lintOnSave: true,
   // 配置反向代理，解决跨域问题
   devServer: {
     proxy: {
