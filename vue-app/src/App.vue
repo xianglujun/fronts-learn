@@ -57,27 +57,17 @@
       <div>放在子元素节点中</div>
     </NavBar>
     <SideBar v-show="isShow"></SideBar> -->
-    <ul> 
-      <!-- <li><router-link active-class="router-link-active" to="/films">电影</router-link></li>
-      <li><router-link active-class="router-link-active" to="/camera">拍照</router-link></li>
-      <li><router-link active-class="router-link-active" to="/center">我的</router-link></li> -->
-
-      <!-- vue-router(4) 声明式导航 -->
-      <router-link v-slot="{ navigate, isActive }" to="/films" custom>
-        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">电影</li>
-      </router-link>
-      <router-link v-slot="{ navigate, isActive }" to="/camera" custom>
-        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">拍照</li>
-      </router-link>
-      <router-link v-slot="{ navigate, isActive }" to="/center" custom>
-        <li :class="isActive ? 'router-link-active' : ''" @click="navigate">我的</li>
-      </router-link>
-    </ul>
-    <router-view></router-view>
+    <section>
+      <router-view></router-view>
+    </section>
+    <footer>
+      <tabbar></tabbar>
+    </footer>
   </div>
 </template>
 
 <script>
+  import tabbar from '@/components/Tabbar.vue'
   document.documentElement.style.frontSize = document.documentElement.clientWidth / 750 * 16 + 'px'
   // import NavBar from './components/NavBar'
   // import SideBar from './components/SideBar'
@@ -85,8 +75,9 @@
   // Vue.component('NavBar', NavBar)
   export default {
     components: {
-    // NavBar,
-    // SideBar
+      // NavBar,
+      // SideBar
+      tabbar
     },
     data () { 
       return { 
@@ -114,32 +105,19 @@ $width: 18.75rem;
   margin: 0;
 }
 
-ul {
-  display: flex;
-  list-style: none;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  border-bottom: 1px solid gray;
-
-  li {
-    width: $width;
-    flex: 1;
-    border-right: 1px solid gray;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-  }
-
-  li:hover {
-    background-color: green;
-    cursor: pointer;
-  }
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
-.router-link-active {
-  color: white;
-  font-weight: bold;
-  background-color: gray;
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  widows: 100%;
+
+  section {
+    flex: 1;
+  }
 }
 </style>
