@@ -13,6 +13,11 @@ const routes = [{
     component: () => import('@/views/films/NowPlaying.vue')
   },
   {
+    path: '/films/onway',
+    component: () => import('@/views/films/OnWay.vue')
+  },
+  {
+    name: 'onway',
     path: '/films',
     redirect: '/films/nowplaying'
   }]

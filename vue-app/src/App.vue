@@ -97,7 +97,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 $width: 18.75rem;
 
 * {
@@ -115,9 +115,12 @@ html, body {
   flex-direction: column;
   height: 100%;
   widows: 100%;
-
+}
+</style>
+<style lang="scss" scoped>
   section {
     flex: 1;
+    overflow: hidden;
+    overflow-x: hidden;
   }
-}
 </style>

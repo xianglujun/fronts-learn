@@ -12,9 +12,6 @@ module.exports = defineConfig({
       '/api/own': { // 代理以/api开头的请求
         target: 'https://i.maoyan.com',
         changeOrigin: true,
-        pathRewrite: {
-          '^/own': '' // 将以/own开头的请求替换掉
-        }
       }
     }
   },
