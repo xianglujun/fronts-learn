@@ -7,7 +7,7 @@ Vue.config.productionTip = false
 
 new Vue({
   router, // 配置路由
-  store,
+  store, // 可以通过this.$store进行访问
   render: h => h(App)
 }).$mount('#app')
  
