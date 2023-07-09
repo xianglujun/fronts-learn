@@ -27,3 +27,18 @@ function sanitinzedInput(input: string): UserInputSanitizedString {
 let input = sanitinzedInput("hello");
 console.log(`input: ${input}`);
 input = "hello World";
+
+// 扩展type
+type Person = {
+  name: string;
+  age: number;
+};
+
+type Male = Person & {
+  bear: boolean;
+};
+
+function printMale(p: Male) {
+  console.log(p);
+}
+printMale({ name: "xianglj", age: 32, bear: true });
